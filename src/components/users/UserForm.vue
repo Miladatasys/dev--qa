@@ -159,7 +159,7 @@ async function handleSubmit() {
         await updateUser(form.value);
     }
 
-    router.push('/');
+    router.push('/home');
     } catch (error) {
     console.error("Error al guardar usuario:", error);
     alert("Hubo un error al guardar el usuario.");
@@ -183,7 +183,7 @@ function removeAddress(index: number) {
 }
 
 function cancelar() {
-    router.push('/')
+    router.push('/home')
 }
 
 function isValidName(name: string): boolean {

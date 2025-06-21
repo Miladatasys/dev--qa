@@ -67,6 +67,48 @@
           "region": "Metropolitana"
         }
       ]
+    },
+    {
+      "id": "4f18bc18-e65d-401d-9dca-a3269dc89e9a",
+      "rut": "26858639-3",
+      "name": "juanita perez",
+      "birthDate": "2025-06-21",
+      "children": 2,
+      "email": "juanitap@gmail.com",
+      "phones": [
+        {
+          "number": "+56921212121",
+          "type": "Móvil"
+        }
+      ],
+      "addresses": [
+        {
+          "street": "Avenida",
+          "city": "Santiago",
+          "region": "atacama"
+        }
+      ]
+    },
+    {
+      "id": "0edfb5be-9af8-4d07-95c8-1399c0d30432",
+      "rut": "66945294-2",
+      "name": "Maria Teresa",
+      "birthDate": "2025-06-21",
+      "children": 3,
+      "email": "mteresa@gmail.com",
+      "phones": [
+        {
+          "number": "+56 921212121",
+          "type": "Móvil"
+        }
+      ],
+      "addresses": [
+        {
+          "street": "Avenida",
+          "city": "Calle",
+          "region": "Region"
+        }
+      ]
     }
   ]
 }

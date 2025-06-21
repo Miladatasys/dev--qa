@@ -1,5 +1,8 @@
 <template>
     <section class="container">
+    <div class="text-right" style="text-align: right; margin-bottom: 1rem;">
+        <button class="btn btn-secondary" @click="handleLogout">Cerrar sesión</button>
+    </div>
     <h1 class="section-title text-center">Sistema de Gestión de usuarios</h1>
     <p class="text-center">{{ users.length }} usuarios registrados</p>
 
@@ -46,6 +49,17 @@
 import { onMounted, ref } from 'vue'
 import { deleteUser, getUsers } from '@/services/userService'
 import type { User } from '@/types/User'
+
+import { useRouter } from 'vue-router'
+import { useAuth } from '@/composables/useAuth'
+
+const router = useRouter()
+const { logout } = useAuth()
+
+function handleLogout() {
+    logout()
+    router.push('/')
+}
 
 const users = ref<User[]>([])
 
