@@ -1,0 +1,72 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "rut": "19765326-1",
+      "name": "Camila Morales",
+      "birthDate": "1997-01-01",
+      "children": 1,
+      "email": "camila@gmail.com",
+      "password": "camila123",
+      "phones": [
+        {
+          "number": "+56921212121",
+          "type": "Móvil"
+        },
+        {
+          "number": "+56921214521",
+          "type": "Móvil"
+        }
+      ],
+      "addresses": [
+        {
+          "street": "Av.avenida",
+          "city": "Santiago",
+          "region": "Metropolitana"
+        }
+      ]
+    },
+    {
+      "id": "f37377d8-1ab1-405a-b12f-7cab7aabf3f2",
+      "rut": "15063944-1",
+      "name": "Juanita",
+      "birthDate": "2025-06-13",
+      "children": 0,
+      "email": "lilabusinesshub@gmail.com",
+      "phones": [
+        {
+          "number": "+56 921212121",
+          "type": "Móvil"
+        }
+      ],
+      "addresses": [
+        {
+          "street": "Wallaby 42",
+          "city": "Sidney",
+          "region": "-"
+        }
+      ]
+    },
+    {
+      "id": "8127631a-7100-419e-a0c1-6e0abb4ba89d",
+      "rut": "17591461-7",
+      "name": "Camila Morales Pereira",
+      "birthDate": "2025-06-19",
+      "children": 1,
+      "email": "camila@gmail.com",
+      "phones": [
+        {
+          "number": "+56921212121",
+          "type": "Móvil"
+        }
+      ],
+      "addresses": [
+        {
+          "street": "Providencia",
+          "city": "Santiago",
+          "region": "Metropolitana"
+        }
+      ]
+    }
+  ]
+}
