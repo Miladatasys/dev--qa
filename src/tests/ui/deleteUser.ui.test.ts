@@ -1,10 +1,10 @@
 import { describe, it, expect, vi, afterEach } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/vue";
-import { createRouter, createWebHistory } from "vue-router";
 
 import HomeView from "@/views/HomeView.vue";
-import CreateUserView from "@/views/CreateUserView.vue";
 import * as userService from '@/services/userService';
+
+import { testRouter } from '@/tests/utils/testRouter';
 
 
 const mockUsers = [
@@ -22,14 +22,6 @@ const mockUsers = [
     },
 ];
 
-const router = createRouter({
-    history: createWebHistory(),
-    routes: [
-        { path: "/", component: HomeView },
-        { path: "/new", component: CreateUserView },
-    ],
-});
-
 afterEach(() => {
     vi.restoreAllMocks();
 });
@@ -46,7 +38,7 @@ describe("UI - Eliminar usuario", () => {
 
         render(HomeView, {
             global: {
-                plugins: [router],
+                plugins: [testRouter],
             },
         });
 

@@ -1,10 +1,10 @@
 import { describe, it, expect, vi, afterEach } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/vue";
-import { createRouter, createWebHistory } from "vue-router";
 import userEvent from "@testing-library/user-event";
+import { testRouter } from '@/tests/utils/testRouter'
 
 import EditUserView from "@/views/EditUserView.vue";
-import HomeView from "@/views/HomeView.vue";
+import * as userService from '@/services/userService'
 
 const mockUser = {
     id: "123",
@@ -19,14 +19,6 @@ const mockUser = {
     ]
 };
 
-const router = createRouter({
-    history: createWebHistory(),
-    routes: [
-    { path: "/", component: HomeView },
-    { path: "/edit/:id", component: EditUserView }
-    ] 
-});
-
 afterEach(() => {
     vi.unstubAllGlobals();
 });
@@ -35,23 +27,15 @@ describe("UI - Editar usuario", () => {
     it("Debería cargar datos y permitir editar el usuario", async () => {
     vi.stubGlobal("alert", vi.fn());
 
-    vi.stubGlobal("fetch", vi.fn((url, options) => {
-        if (options && options.method === "PUT") {
-        return Promise.resolve({ ok: true, json: () => Promise.resolve({}) });
-        }
+    vi.spyOn(userService, "getUsers").mockResolvedValue([mockUser])
+    vi.spyOn(userService, "updateUser").mockResolvedValue()
 
-        return Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve([mockUser])
-        });
-    }));
-
-    router.push("/edit/123");
-    await router.isReady();
+    testRouter.push("/edit/123")
+    await testRouter.isReady()
 
     render(EditUserView, {
         global: {
-        plugins: [router]
+        plugins: [testRouter]
         }
     });
 
@@ -70,7 +54,7 @@ describe("UI - Editar usuario", () => {
     await fireEvent.click(submitButton);
 
     await waitFor(() => {
-        expect(router.currentRoute.value.fullPath).toBe("/");
+        expect(testRouter.currentRoute.value.fullPath).toBe("/home");
     });
     });
 });

@@ -1,0 +1,35 @@
+name: Run tests and audit
+
+on: [push, pull_request]
+
+jobs:
+  build-and-test:
+    name: Install, Audit and Test app
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Verify vulnerabilities
+        run: npm audit --audit-level=moderate || true
+
+      - name: Execute unit tests
+        run: npx vitest run src/tests/unit/userService.test.ts    
+
+      - name: Execute integration test
+        run: npx vitest run src/tests/integration/userApi.integration.test.ts 
+
+      - name: Execute UI tests
+        run: |
+          npx vitest run src/tests/ui/addUser.ui.test.ts
+          npx vitest run src/tests/ui/editUser.ui.test.ts
+          npx vitest run src/tests/ui/deleteUser.ui.test.ts

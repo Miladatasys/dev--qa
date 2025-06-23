@@ -1,19 +1,10 @@
 import { describe, it, expect, vi, afterEach } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/vue";
-import { createRouter, createWebHistory } from "vue-router";
+import { testRouter } from '@/tests/utils/testRouter'
+
 
 import CreateUserView from "@/views/CreateUserView.vue";
-import HomeView from "@/views/HomeView.vue";
-
 import userEvent from '@testing-library/user-event'
-
-const router = createRouter({
-    history: createWebHistory(),
-    routes: [
-        { path: '/', component: HomeView },
-        { path: '/new', component: CreateUserView },
-    ],
-})
 
 afterEach(() => {
     vi.unstubAllGlobals();
@@ -29,12 +20,15 @@ describe('UI -Agregar usuario', () => {
                 json: () => Promise.resolve([]),
             })
         ));
-        
+
+        testRouter.push('/new')
+        await testRouter.isReady()
+
         render(CreateUserView, {
             global: {
-                plugins: [router],
+                plugins: [testRouter],
             }
-        })
+        });
 
         await userEvent.type(screen.getByLabelText(/RUT \*/), '12345678-5')
         await userEvent.type(screen.getByLabelText(/Nombre completo \*/), 'Camila Morales')
@@ -52,7 +46,7 @@ describe('UI -Agregar usuario', () => {
         await fireEvent.click(submitButton)
 
         await waitFor(() => {
-            expect(router.currentRoute.value.fullPath).toBe('/')
+            expect(testRouter.currentRoute.value.fullPath).toBe('/home')
         })
     })
 })

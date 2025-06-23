@@ -1,29 +1,59 @@
-# user-management
+# App de Gestión de Usuarios
 
-This template should help get you started developing with Vue 3 in Vite.
+Una aplicación web para la **gestión de usuarios** desarrollada en Vue y TypeScript
 
-## Recommended IDE Setup
+**Las funcionalidades de la app:**
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- Listar usuarios con el total de registros
+- Crear, editar y eliminar usuarios
+- Validaciones:
+    - Email válido
+    - RUT único con formato
+    - Teléfono chileno, incluyendo el código +569 o +56 9
+    - Campos de nombre sin números
+    - No se elimina usuarios en día de cumpleaños 
+    - Se puede añadir múltiples teléfonos y direcciones
+    - Autenticación simulada con login
 
-## Customize configuration
+**Testing:**
+- ``Vitest`` para pruebas unitarias y de integración
+- ``@testing-library/vue`` para pruebas visuales (ui)
+- ``msw`` para mocking de la API
+- Autenticación: Login simulado con 'useAuth'
+- API Mock: Simulada mediante ``msw`` y ``db.json`` 
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+**Tests incluidos:**
+    - Unit Test 
+    - UI Test
+    - Integration Test
+    - Mock Handlers
 
-## Project Setup
+**Rutas:**
 
-```sh
-npm install
-```
+- '/' = login
+- '/home' = listados de usuarios
+- '/new' = formulario de crear usuario
+- '/edit/:id' = formulario de editar usuario
 
-### Compile and Hot-Reload for Development
+**Instalación y ejecución:**
+1. Instalar dependencias
+``    npm install``
+2. Levantar app:
+``npm run dev``
+3. Correr API fake si se usa JSON Server:
+``npm run api``
+4. Ejecutar los tests:
+``npx vitest run``
 
-```sh
-npm run dev
-```
+## Ejecución de pruebas individuales
 
-### Compile and Minify for Production
+### Prueba unitaria
+npx vitest run src/tests/unit/userService.test.ts
 
-```sh
-npm run build
-```
+### Pruebas visuales (UI)
+- npx vitest run src/tests/ui/addUser.ui.test.ts
+- npx vitest run src/tests/ui/editUser.ui.test.ts
+- npx vitest run src/tests/ui/deleteUser.ui.test.ts
+
+### Prueba de integración
+npx vitest run src/tests/integration/userApi.integration.test.ts
