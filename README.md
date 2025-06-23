@@ -1,4 +1,5 @@
 # App de Gestión de Usuarios
+![CI](https://github.com/Miladatasys/dev--qa/actions/workflows/tests.yml/badge.svg)
 
 Una aplicación web para la **gestión de usuarios** desarrollada en Vue y TypeScript
 
